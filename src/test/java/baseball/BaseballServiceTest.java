@@ -1,6 +1,7 @@
 package baseball;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
+import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.Test;
@@ -31,5 +32,11 @@ class BaseballServiceTest {
     void 숫자가_중복되면_잘못된_값() {
         assertSimpleTest(() -> assertThatThrownBy(() -> baseballService.validateInput("119")).isInstanceOf(
                 IllegalArgumentException.class));
+    }
+
+    @Test
+    void 정답_숫자가_올바른지_테스트() {
+        String answer = baseballService.generateRandomThreeDigitNumber();
+        assertSimpleTest(() -> assertThatCode(() -> baseballService.validateInput(answer)).doesNotThrowAnyException());
     }
 }

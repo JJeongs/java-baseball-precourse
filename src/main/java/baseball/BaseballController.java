@@ -9,6 +9,7 @@ public class BaseballController {
 
     public boolean playGame(String number) {
         baseballService.validateInput(number);
+        String answer = baseballService.generateRandomThreeDigitNumber();
         return true;
     }
 }
