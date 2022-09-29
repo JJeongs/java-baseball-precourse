@@ -11,6 +11,7 @@ public class BaseballController {
         baseballService.validateInput(input);
         String answer = baseballService.generateRandomThreeDigitNumber();
         Score score = baseballService.countScore(answer, input);
+        System.out.println(score);
         return true;
     }
 }

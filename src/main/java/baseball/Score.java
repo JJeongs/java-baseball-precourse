@@ -3,8 +3,8 @@ package baseball;
 import java.util.Objects;
 
 public class Score {
-    int ball;
-    int strike;
+    private int ball;
+    private int strike;
 
     public Score() {
         ball = 0;
@@ -30,6 +30,21 @@ public class Score {
 
     public void setStrike(int strike) {
         this.strike = strike;
+    }
+
+    @Override
+    public String toString() {
+        String result = "";
+        if (ball == 0 && strike == 0) {
+            return "낫싱";
+        }
+        if (ball > 0) {
+            result += (ball + "볼 ");
+        }
+        if (strike > 0) {
+            result += (strike + "스트라이크");
+        }
+        return result.trim();
     }
 
     @Override
