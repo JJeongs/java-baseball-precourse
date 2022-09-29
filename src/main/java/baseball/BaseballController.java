@@ -8,7 +8,7 @@ public class BaseballController {
     }
 
     public boolean playGame(String input) {
-        baseballService.validateInput(input);
+        baseballService.validateNumber(input);
         String answer = baseballService.generateRandomThreeDigitNumber();
         Score score = baseballService.countScore(answer, input);
         System.out.println(score);

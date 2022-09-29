@@ -11,11 +11,11 @@ public class BaseballService {
     public static final int MIN_DIGIT = 1;
     public static final int MAX_DIGIT = 9;
 
-    public void validateInput(String input) {
-        if (!isThreeDigitNumberWithoutZero(input)) {
+    public void validateNumber(String number) {
+        if (!isThreeDigitNumberWithoutZero(number)) {
             throw new IllegalArgumentException();
         }
-        if (hasDuplicatedDigit(input)) {
+        if (hasDuplicatedDigit(number)) {
             throw new IllegalArgumentException();
         }
     }

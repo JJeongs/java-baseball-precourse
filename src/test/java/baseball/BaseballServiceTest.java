@@ -13,32 +13,32 @@ class BaseballServiceTest {
 
     @Test
     void 숫자로_이루어져있지_않으면_잘못된_값() {
-        assertSimpleTest(() -> assertThatThrownBy(() -> baseballService.validateInput("-12")).isInstanceOf(
+        assertSimpleTest(() -> assertThatThrownBy(() -> baseballService.validateNumber("-12")).isInstanceOf(
                 IllegalArgumentException.class));
     }
 
     @Test
     void 입력이_3글자가_아니면_잘못된_값() {
-        assertSimpleTest(() -> assertThatThrownBy(() -> baseballService.validateInput("1234")).isInstanceOf(
+        assertSimpleTest(() -> assertThatThrownBy(() -> baseballService.validateNumber("1234")).isInstanceOf(
                 IllegalArgumentException.class));
     }
 
     @Test
     void zero_포함되어_있으면_잘못된_값() {
-        assertSimpleTest(() -> assertThatThrownBy(() -> baseballService.validateInput("102")).isInstanceOf(
+        assertSimpleTest(() -> assertThatThrownBy(() -> baseballService.validateNumber("102")).isInstanceOf(
                 IllegalArgumentException.class));
     }
 
     @Test
     void 숫자가_중복되면_잘못된_값() {
-        assertSimpleTest(() -> assertThatThrownBy(() -> baseballService.validateInput("119")).isInstanceOf(
+        assertSimpleTest(() -> assertThatThrownBy(() -> baseballService.validateNumber("119")).isInstanceOf(
                 IllegalArgumentException.class));
     }
 
     @Test
     void 정답_숫자가_올바른지_테스트() {
         String answer = baseballService.generateRandomThreeDigitNumber();
-        assertSimpleTest(() -> assertThatCode(() -> baseballService.validateInput(answer)).doesNotThrowAnyException());
+        assertSimpleTest(() -> assertThatCode(() -> baseballService.validateNumber(answer)).doesNotThrowAnyException());
     }
 
     @Test
