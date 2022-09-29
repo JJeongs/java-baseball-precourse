@@ -61,4 +61,16 @@ class BaseballServiceTest {
         Score expected = new Score(0, 0);
         assertThat(score).isEqualTo(expected);
     }
+
+    @Test
+    void 게임종료_3스트라이크면_TRUE() {
+        Score score = new Score(0, 3);
+        assertThat(baseballService.isGameEnded(score)).isTrue();
+    }
+
+    @Test
+    void 게임종료_2볼_1스트라이크면_FALSE() {
+        Score score = new Score(2, 1);
+        assertThat(baseballService.isGameEnded(score)).isFalse();
+    }
 }

@@ -65,4 +65,11 @@ public class BaseballService {
         }
         return score;
     }
+
+    public boolean isGameEnded(Score score) {
+        if (score.getStrike() == MAX_SIZE) {
+            return true;
+        }
+        return false;
+    }
 }
