@@ -3,6 +3,7 @@ package baseball;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.Test;
 
@@ -38,5 +39,26 @@ class BaseballServiceTest {
     void 정답_숫자가_올바른지_테스트() {
         String answer = baseballService.generateRandomThreeDigitNumber();
         assertSimpleTest(() -> assertThatCode(() -> baseballService.validateInput(answer)).doesNotThrowAnyException());
+    }
+
+    @Test
+    void 점수계산_2볼_1스트라이크_테스트() {
+        Score score = baseballService.countScore("123", "321");
+        Score expected = new Score(2, 1);
+        assertThat(score).isEqualTo(expected);
+    }
+
+    @Test
+    void 점수계산_3스트라이크_테스트() {
+        Score score = baseballService.countScore("123", "123");
+        Score expected = new Score(0, 3);
+        assertThat(score).isEqualTo(expected);
+    }
+
+    @Test
+    void 점수계산_0볼_0스트라이크_테스트() {
+        Score score = baseballService.countScore("123", "456");
+        Score expected = new Score(0, 0);
+        assertThat(score).isEqualTo(expected);
     }
 }

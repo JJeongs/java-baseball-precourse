@@ -51,4 +51,13 @@ public class BaseballService {
         }
         return digit;
     }
+
+    public Score countScore(String answer, String number) {
+        Score score = new Score();
+        for (int i = 0; i < 3; i++) {
+            score.increaseStrikeInEqualPosition(answer, number, i);
+            score.increaseBallIfInDifferentPosition(answer, number, i);
+        }
+        return score;
+    }
 }
