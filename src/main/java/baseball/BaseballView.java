@@ -10,11 +10,12 @@ public class BaseballView {
     }
 
     public void startGame() {
+        String answer = baseballController.makeAnswer();
         boolean isFinished = false;
         while (!isFinished) {
             System.out.print("숫자를 입력해주세요 : ");
             String input = Console.readLine();
-            isFinished = baseballController.playGame(input);
+            isFinished = baseballController.playGame(answer, input);
         }
     }
 }
