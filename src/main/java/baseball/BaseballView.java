@@ -13,8 +13,8 @@ public class BaseballView {
         boolean isFinished = false;
         while (!isFinished) {
             System.out.print("숫자를 입력해주세요 : ");
-            String number = Console.readLine();
-            isFinished = baseballController.playGame(number);
+            String input = Console.readLine();
+            isFinished = baseballController.playGame(input);
         }
     }
 }

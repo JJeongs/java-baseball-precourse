@@ -6,11 +6,16 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 public class BaseballService {
-    public void validateInput(String number) {
-        if (!isThreeDigitNumberWithoutZero(number)) {
+
+    public static final int MAX_SIZE = 3;
+    public static final int MIN_DIGIT = 1;
+    public static final int MAX_DIGIT = 9;
+
+    public void validateInput(String input) {
+        if (!isThreeDigitNumberWithoutZero(input)) {
             throw new IllegalArgumentException();
         }
-        if (hasDuplicatedDigit(number)) {
+        if (hasDuplicatedDigit(input)) {
             throw new IllegalArgumentException();
         }
     }
@@ -30,7 +35,7 @@ public class BaseballService {
 
     public String generateRandomThreeDigitNumber() {
         List<Integer> number = new ArrayList<>();
-        while (number.size() < 3) {
+        while (number.size() < MAX_SIZE) {
             number.add(getDigitNotIn(number));
         }
         return convertIntegerListToString(number);
@@ -45,18 +50,18 @@ public class BaseballService {
     }
 
     private int getDigitNotIn(List<Integer> number) {
-        int digit = Randoms.pickNumberInRange(1, 9);
+        int digit = Randoms.pickNumberInRange(MIN_DIGIT, MAX_DIGIT);
         while (number.contains(digit)) {
-            digit = Randoms.pickNumberInRange(1, 9);
+            digit = Randoms.pickNumberInRange(MIN_DIGIT, MAX_DIGIT);
         }
         return digit;
     }
 
-    public Score countScore(String answer, String number) {
+    public Score countScore(String answer, String input) {
         Score score = new Score();
-        for (int i = 0; i < 3; i++) {
-            score.increaseStrikeInEqualPosition(answer, number, i);
-            score.increaseBallIfInDifferentPosition(answer, number, i);
+        for (int position = 0; position < MAX_SIZE; position++) {
+            score.increaseStrikeInEqualPosition(answer, input, position);
+            score.increaseBallIfInDifferentPosition(answer, input, position);
         }
         return score;
     }

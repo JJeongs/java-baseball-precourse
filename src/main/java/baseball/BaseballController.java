@@ -7,10 +7,10 @@ public class BaseballController {
         this.baseballService = baseballService;
     }
 
-    public boolean playGame(String number) {
-        baseballService.validateInput(number);
+    public boolean playGame(String input) {
+        baseballService.validateInput(input);
         String answer = baseballService.generateRandomThreeDigitNumber();
-        Score score = baseballService.countScore(answer, number);
+        Score score = baseballService.countScore(answer, input);
         return true;
     }
 }
