@@ -60,8 +60,8 @@ public class BaseballService {
     public Score countScore(String answer, String input) {
         Score score = new Score();
         for (int position = 0; position < MAX_SIZE; position++) {
-            score.increaseStrikeInEqualPosition(answer, input, position);
-            score.increaseBallIfInDifferentPosition(answer, input, position);
+            score.countBall(answer, input, position);
+            score.countStrike(answer, input, position);
         }
         return score;
     }

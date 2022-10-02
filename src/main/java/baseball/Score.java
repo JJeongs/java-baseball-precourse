@@ -7,8 +7,8 @@ public class Score {
     private int strike;
 
     public Score() {
-        ball = 0;
-        strike = 0;
+        this.ball = 0;
+        this.strike = 0;
     }
 
     public Score(int ball, int strike) {
@@ -32,18 +32,28 @@ public class Score {
         this.strike = strike;
     }
 
+    private String getBallString() {
+        if (this.ball > 0) {
+            return (this.ball + "볼 ");
+        }
+        return "";
+    }
+
+    private String getStrikeString() {
+        if (this.strike > 0) {
+            return (this.strike + "스트라이크");
+        }
+        return "";
+    }
+
     @Override
     public String toString() {
         String result = "";
-        if (ball == 0 && strike == 0) {
+        if (this.ball == 0 && this.strike == 0) {
             return "낫싱";
         }
-        if (ball > 0) {
-            result += (ball + "볼 ");
-        }
-        if (strike > 0) {
-            result += (strike + "스트라이크");
-        }
+        result += getBallString();
+        result += getStrikeString();
         return result.trim();
     }
 
@@ -72,7 +82,7 @@ public class Score {
         this.strike++;
     }
 
-    public void increaseBallIfInDifferentPosition(String answer, String number, int position) {
+    public void countBall(String answer, String number, int position) {
         if (answer.charAt(position) == number.charAt(position)) {
             return;
         }
@@ -81,7 +91,7 @@ public class Score {
         }
     }
 
-    public void increaseStrikeInEqualPosition(String answer, String number, int position) {
+    public void countStrike(String answer, String number, int position) {
         if (answer.charAt(position) == number.charAt(position)) {
             increaseStrike();
         }
